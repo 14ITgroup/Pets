@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">HelloPets</string>
+
+    <string name="logout">注销</string>
+
+    <string name="user_settings">账户设置</string>
+
+    <!--将注册后的信息保留,方便用户，同时可以取得user_id，方便进一步的操作-->
+    <string name="user_id">user_id</string>
+
+    <string name="username">username</string>
+
+    <string name="password">password</string>
+
+    <string name="prefer_set">设置偏好</string>
+</resources>
