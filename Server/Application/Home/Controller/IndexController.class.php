@@ -325,7 +325,9 @@ class IndexController extends Controller
         foreach ($data as &$item) {
             $userid = $item['userid'];
             $realname = M('user')->where("id=%d", $userid)->getField('realname');
+            $username = M('user')->where("id=%d", $userid)->getField('username');
             $item['realname'] = $realname;
+            $item['username'] = $username;
         }
 
         $this->assign("list_taken", $data);

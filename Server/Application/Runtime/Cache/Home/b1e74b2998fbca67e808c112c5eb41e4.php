@@ -194,7 +194,8 @@
     <thead>
     <tr>
         <th>#</th>
-        <th style="width: 8%;">领养人</th>
+        <th style="width: 8%;">领养人姓名</th>
+        <th>领养人帐号</th>
         <th>宠物名</th>
         <th>宠物种类</th>
         <th>宠物年龄</th>
@@ -206,6 +207,7 @@
     <?php if(is_array($list_taken)): $k = 0; $__LIST__ = $list_taken;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vot): $mod = ($k % 2 );++$k;?><tr>
             <td><?php echo ($k); ?></td>
             <td><?php echo ($vot["realname"]); ?></td>
+            <td><?php echo ($vot["username"]); ?></td>
             <td><?php echo ($vot["petname"]); ?></td>
             <td><?php echo ($vot["breed"]); ?></td>
             <td><?php echo ($vot["age"]); ?></td>

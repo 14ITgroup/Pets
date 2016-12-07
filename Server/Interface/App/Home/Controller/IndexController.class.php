@@ -55,7 +55,7 @@ class IndexController extends Controller {
     public function appGetPets(){
         $pet = M('pet');
         // find 方法只会返回第一条记录
-        $data=$pet->select();
+        $data = $pet->where('istaken=0')->select();
         $this->ajaxReturn($data,'json');
     }
 
