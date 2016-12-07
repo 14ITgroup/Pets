@@ -1,4 +1,4 @@
-<!doctype html>
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
 <html lang="en"><head>
     <meta charset="utf-8">
     <title>Pets Admin</title>
@@ -7,15 +7,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="__PUBLIC__/lib/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/Pets/Public/lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/Pets/Public/lib/font-awesome/css/font-awesome.css">
 
-    <script src="__PUBLIC__/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="/Pets/Public/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
 
 
 
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/stylesheets/theme.css">
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/stylesheets/premium.css">
+    <link rel="stylesheet" type="text/css" href="/Pets/Public/stylesheets/theme.css">
+    <link rel="stylesheet" type="text/css" href="/Pets/Public/stylesheets/premium.css">
 
 </head>
 <body class=" theme-blue">
@@ -116,7 +116,7 @@
 
 
 
-    <script src="__PUBLIC__/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="/Pets/Public/lib/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript">
         $("[rel=tooltip]").tooltip();
         $(function() {

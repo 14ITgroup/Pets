@@ -1,4 +1,4 @@
-<!doctype html>
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -8,13 +8,21 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="__PUBLIC__/lib/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/Pets/Public/lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/Pets/Public/lib/font-awesome/css/font-awesome.css">
 
-    <script src="__PUBLIC__/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="/Pets/Public/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
 
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/stylesheets/theme.css">
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/stylesheets/premium.css">
+    <script src="/Pets/Public/lib/jQuery-Knob/js/jquery.knob.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".knob").knob();
+        });
+    </script>
+
+
+    <link rel="stylesheet" type="text/css" href="/Pets/Public/stylesheets/theme.css">
+    <link rel="stylesheet" type="text/css" href="/Pets/Public/stylesheets/premium.css">
 
 </head>
 <body class=" theme-blue">
@@ -98,14 +106,14 @@
             <li class="dropdown hidden-xs">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-user padding-right-small"
-                          style="position:relative;top: 3px;"></span> {$name}
+                          style="position:relative;top: 3px;"></span> <?php echo ($name); ?>
                     <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="{:U('/Home/Index/order')}">宠物</a></li>
-                    <li><a href="{:U('/Home/Index/users')}">用户</a></li>
+                    <li><a href="<?php echo U('/Home/Index/order');?>">宠物</a></li>
+                    <li><a href="<?php echo U('/Home/Index/users');?>">用户</a></li>
                     <li class="divider"></li>
-                    <li><a tabindex="-1" href="{:U('/Home/Index/login')}">退出</a></li>
+                    <li><a tabindex="-1" href="<?php echo U('/Home/Index/login');?>">退出</a></li>
                 </ul>
             </li>
         </ul>
@@ -120,48 +128,29 @@
                 class="fa fa-fw fa-dashboard"></i>Pets后台<i class="fa fa-collapse"></i></a></li>
         <li>
             <ul class="dashboard-menu nav nav-list collapse in">
-                <li><a href="{:U('/Home/Index/index')}"><span class="fa fa-caret-right"></span>后台首页</a></li>
-                <li><a href="{:U('/Home/Index/apply')}"><span class="fa fa-caret-right"></span>最新申请</a></li>
-                <!--<li><a href="{:U('/Home/Index/notice')}"><span class="fa fa-caret-right"></span>公告管理</a></li>-->
+                <li><a href="<?php echo U('/Home/Index/index');?>"><span class="fa fa-caret-right"></span>后台首页</a></li>
+                <li><a href="<?php echo U('/Home/Index/order');?>"><span class="fa fa-caret-right"></span>最新申请</a></li>
+                <!--<li><a href="<?php echo U('/Home/Index/notice');?>"><span class="fa fa-caret-right"></span>公告管理</a></li>-->
             </ul>
         </li>
-        <li data-popover="true" rel="popover" data-placement="right"><a href="#" data-target=".room-menu"
-                                                                        class="nav-header collapsed"
-                                                                        data-toggle="collapse"><i
-                class="fa fa-fw fa-fighter-jet"></i>房间管理<i class="fa fa-collapse"></i></a></li>
-        <li>
-            <ul class="room-menu nav nav-list collapse">
-                <li><a href="{:U('/Home/Index/rooms')}"><span class="fa fa-caret-right"></span>房间列表</a></li>
-                <!--<li><a href="{:U('/Home/Index/userselect')}"><span class="fa fa-caret-right"></span>用户检索</a></li>-->
-            </ul>
-        </li>
+
         <li data-popover="true" rel="popover" data-placement="right"><a href="#" data-target=".premium-menu"
-                                                                        class="nav-header"
+                                                                        class="nav-header collapsed"
                                                                         data-toggle="collapse"><i
                 class="fa fa-fw fa-fighter-jet"></i>宠物管理<i class="fa fa-collapse"></i></a></li>
         <li>
-            <ul class="premium-menu nav nav-list collapse in">
+            <ul class="premium-menu nav nav-list collapse">
                 <li class="visible-xs visible-sm"><a href="#">- Premium features require a license -</a>
-                <li><a href="{:U('/Home/Index/petslist')}"><span class="fa fa-caret-right"></span>宠物列表</a></li>
-                <li><a href="{:U('/Home/Index/lookafter')}"><span class="fa fa-caret-right"></span>照料列表</a></li>
-                <li><a href="{:U('/Home/Index/petsUser')}"><span class="fa fa-caret-right"></span>领养记录</a></li>
+                <li><a href="<?php echo U('/Home/Index/goodslist');?>"><span class="fa fa-caret-right"></span>宠物列表</a></li>
             </ul>
         </li>
 
         <li><a href="#" data-target=".accounts-menu" class="nav-header collapsed" data-toggle="collapse"><i
-                class="fa fa-fw fa-briefcase"></i>护工管理<span class="label label-info">+3</span></a></li>
+                class="fa fa-fw fa-briefcase"></i>用户管理<span class="label label-info">+3</span></a></li>
         <li>
             <ul class="accounts-menu nav nav-list collapse">
-                <li><a href="{:U('/Home/Index/careworkers')}"><span class="fa fa-caret-right"></span>护工列表</a></li>
-            </ul>
-        </li>
-
-        <li><a href="#" data-target=".user-menu" class="nav-header collapsed" data-toggle="collapse"><i
-                class="fa fa-fw fa-legal"></i>用户管理<i class="fa fa-collapse"></i></a></li>
-        <li>
-            <ul class="user-menu nav nav-list collapse">
-                <li><a href="{:U('/Home/Index/users')}"><span class="fa fa-caret-right"></span>用户列表</a></li>
-                <li><a href="{:U('/Home/Index/apply')}"><span class="fa fa-caret-right"></span>申请列表</a></li>
+                <li><a href="<?php echo U('/Home/Index/users');?>"><span class="fa fa-caret-right"></span>用户列表</a></li>
+                <li><a href="<?php echo U('/Home/Index/userselect');?>"><span class="fa fa-caret-right"></span>用户检索</a></li>
             </ul>
         </li>
 
@@ -169,8 +158,8 @@
                 class="fa fa-fw fa-legal"></i>管理员管理<i class="fa fa-collapse"></i></a></li>
         <li>
             <ul class="legal-menu nav nav-list collapse">
-                <li><a href="{:U('/Home/Index/admins')}"><span class="fa fa-caret-right"></span>管理员列表</a></li>
-                <li><a href="{:U('/Home/Index/addadmin')}"><span class="fa fa-caret-right"></span>新增管理员</a></li>
+                <li><a href="<?php echo U('/Home/Index/admins');?>"><span class="fa fa-caret-right"></span>管理员列表</a></li>
+                <li><a href="<?php echo U('/Home/Index/addadmin');?>"><span class="fa fa-caret-right"></span>新增管理员</a></li>
             </ul>
         </li>
 
@@ -182,16 +171,66 @@
 <div class="content">
     <div class="main-content">
 
-        <include file="Public:header"/>
-        {__CONTENT__}
-        <include file="Public:footer"/>
+        
+        <div class="panel panel-default">
+<div class="panel-heading no-collapse">最新业务<span class="label label-warning">+10</span></div>
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>订单</th>
+                  <th>商品</th>
+                  <th>订货数量</th>
+                  <th>剩余数量</th>
+                  <th>下单时间</th>
+                  <th>状态</th>             
+                  <th style="width: 3.5em;"></th>
+                </tr>
+              </thead>
+              <tbody>
+                    <?php if(is_array($order)): $i = 0; $__LIST__ = $order;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$order): $mod = ($i % 2 );++$i;?><tr>
+                            <td><?php echo ($i); ?></td>
+                            <td><?php echo ($order["order_id"]); ?></td>
+                            <td><?php echo ($order["goods_name"]); ?></td>
+                            <td><?php echo ($order["goodsnum"]); ?></td>
+                            <td><?php echo ($order["goodsleft"]); ?></td>
+                            <td><?php echo ($order["addtime"]); ?></td>
+                            <td><?php echo ($order["order_state"]); ?></td>
+                            <td>
+                          <a href="<?php echo U("Home/Index/handleorder?id=$order[order_id]");?>">发货</a>
+                          </td>
+                          </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+              </tbody>
+            </table>
+        </div>
+        </div>
+
+<div class="modal small fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Delete Confirmation</h3>
+        </div>
+        <div class="modal-body">
+            <p class="error-text"><i class="fa fa-warning modal-icon"></i>Are you sure you want to delete the user?<br>This cannot be undone.</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            <button class="btn btn-danger" data-dismiss="modal">Delete</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+        
 
 
     </div>
 </div>
 
 
-<script src="__PUBLIC__/lib/bootstrap/js/bootstrap.js"></script>
+<script src="/Pets/Public/lib/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript">
     $("[rel=tooltip]").tooltip();
     $(function () {

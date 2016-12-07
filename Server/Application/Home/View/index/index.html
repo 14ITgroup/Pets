@@ -6,16 +6,16 @@
               <thead>
                 <tr>
                   <th>用户名</th>
-                  <th>帐号</th>
-                  <th>状态</th>
+                  <th>真实姓名</th>
+                  <th>电话</th>
                 </tr>
               </thead>
               <tbody>
                  <volist name="list" id="vo" offset='0' length='10'>
                     <tr>
-                      <td>{$vo.name}</td>
-                      <td>{$vo.account}</td>
-                      <td>{$vo.state}</td>
+                      <td>{$vo.username}</td>
+                      <td>{$vo.realname}</td>
+                      <td>{$vo.phone}</td>
                     </tr>
                   </volist>
               </tbody>

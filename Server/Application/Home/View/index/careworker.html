@@ -5,36 +5,28 @@
             <div class="tab-pane active in" id="home">
                 <form id="tab" method='post'>
                     <div class="form-group">
-                        <label>用户名</label>
-                        <input type="text" name="username" id="username" value="{$list[0].username}"
+                        <label>姓名</label>
+                        <input type="text" name="name" id="name" value="{$list.name}"
                                class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>密码</label>
-                        <input type="text" name="password" id="password" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>真实姓名</label>
-                        <input type="text" name="realname" id="realname" value="{$list[0].realname}" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>性别</label>
-                        <input type="text" name="sex" id="sex" value="{$list[0].sex}" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>身份证号</label>
-                        <input type="text" name="idcard" id="idcard" value="{$list[0].idcard}"
-                               class="form-control">
+                        <input type="text" name="sex" id="sex" value="{$list.sex}" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>电话</label>
-                        <input type="text" name="phone" id="phone" value="{$list[0].phone}"
+                        <input type="text" name="phone" id="phone" value="{$list.phone}"
+                               class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>身份证号</label>
+                        <input type="text" name="idcard" id="idcard" value="{$list.idcard}"
                                class="form-control">
                     </div>
                     <div class="form-group">
                         <label>地址</label>
                         <textarea name="address" id="address" rows="3"
-                                  class="form-control">{$list[0].address}</textarea>
+                                  class="form-control">{$list.address}</textarea>
                     </div>
 
             </div>
