@@ -142,11 +142,13 @@ class IndexController extends Controller
 
     // 宠物列表
     public function petslist() {
+        // 未被领养的宠物
         $data = M()->field('pet.id, petname, breed, age, sex, entertime, room.name roomname')
-            ->table('pet pet,room room')
-            ->where("room.id=pet.roomid")
+            ->table('pet pet, room room')
+            ->where("room.id=pet.roomid AND pet.istaken=0")
             ->order('roomname')
             ->select();
+
         $this->assign("list", $data);
         $this->display();
     }
@@ -271,6 +273,20 @@ class IndexController extends Controller
         }
     }
 
+    // 删除宠物
+    public function deletepet() {
+        $id = I('request.id');
+        $pet = M('pet');
+        $result = $pet->delete($id);
+        if ($result) {
+            echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
+            echo "<script>alert('删除成功');location.href='" . $_SERVER["HTTP_REFERER"] . "';</script>";
+        } else {
+            echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
+            echo "<script>alert('删除失败');location.href='" . $_SERVER["HTTP_REFERER"] . "';</script>";
+        }
+    }
+
     // 照料列表
     public function lookafter() {
         $data = M()->field('lookafter.id, careworker.name careworker_name, pet.petname pet_name')
@@ -299,6 +315,23 @@ class IndexController extends Controller
             $this->redirect("/Home/Index/lookafter");
         }
     }
+
+    // 领养记录
+    public function petsUser() {
+        $data = M()->field('pet.id pet_id, petname, breed, age, sex, apply.userid')
+            ->table('pet pet, application apply')
+            ->where('pet.istaken=1 AND pet.id=apply.petid')
+            ->select();
+        foreach ($data as &$item) {
+            $userid = $item['userid'];
+            $realname = M('user')->where("id=%d", $userid)->getField('realname');
+            $item['realname'] = $realname;
+        }
+
+        $this->assign("list_taken", $data);
+        $this->display();
+    }
+
 
     // 护工列表
     public function careworkers() {
@@ -425,6 +458,73 @@ class IndexController extends Controller
         }
     }
 
+    // 申请列表
+    public function apply() {
+        // 查找待处理申请信息
+        $data = M()->field('apply.id apply_id, realname, username, petid, petname')
+            ->table('application apply, user user, pet pet')
+            ->where('apply.userid=user.id AND apply.petid=pet.id AND ispass=0')
+            ->select();
+        $this->assign("list", $data);
+
+        // 查找已处理信息
+        $data1 = M()->field('apply.id apply_id, realname, username, petid, petname, ispass')
+            ->table('application apply, user user, pet pet')
+            ->where('apply.userid=user.id AND apply.petid=pet.id AND ispass<>0')
+            ->select();
+        foreach ($data1 as &$item) {
+            if($item['ispass'] == 1) {
+                $item['state'] = '审核通过';
+            } else {
+                $item['state'] = '审核拒绝';
+            }
+        }
+        $this->assign("list_take", $data1);
+        $this->display();
+    }
+
+    // 申请通过
+    public function applysuccess() {
+        $id = I('request.id');
+        $apply = M('application');
+        // 开启事务
+        $apply->startTrans();
+        try {
+            // 设ispass标志位为1
+            $apply->where('id=%d', $id)->lock(true)->setField('ispass', 1);
+            // 设宠物istaken标志位为1
+            $petid = M('application')->where('id=%d', $id)->getField('petid');
+            $pet = M('pet')->where('id=%d', $petid)
+                ->setField('istaken', 1);
+            // 删除lookafter表中对应的宠物记录
+            $lookafter = M('lookafter')->where('petid=%d', $petid)->delete();
+            // 提交事务
+            $apply->commit();
+            echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
+            echo "<script>alert('审核通过成功');</script>";
+        } catch(Exception $e) {
+            // 回滚事务
+            $apply->rollback();
+            echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
+            echo '<script>alert("审核通过失败")</script>';
+        }
+        $this->redirect("/Home/Index/apply");
+    }
+
+    // 申请拒绝
+    public function applydeny() {
+        $id = I('request.id');
+        $apply = M('application');
+        $result = $apply->where('id=%d', $id)->lock(true)->setField('ispass', -1);
+        if ($result) {
+            echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
+            echo "<script>alert('审核拒绝成功');</script>";
+        } else {
+            echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
+            echo "<script>alert('审核拒绝失败');</script>";
+        }
+        $this->redirect("/Home/Index/apply");
+    }
 
     // 管理员列表
     public function admins() {

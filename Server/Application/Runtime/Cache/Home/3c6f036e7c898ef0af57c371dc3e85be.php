@@ -184,46 +184,66 @@
 
         
         <div class="header">
-    <h1 class="page-title">用户记录</h1>
-    <ul class="breadcrumb">
-        <li><a href="<?php echo U("Home/Index/index");?>">主页</a> </li>
-        <li class="active">用户列表</li>
-    </ul>
+    <h1 class="page-title">用户申请</h1>
+    <h2>待处理</h2>
 </div>
-<table class="table">
+<table class="table" style="width: 60%;">
     <thead>
     <tr>
         <th>#</th>
-        <th>用户名</th>
-        <th>真实姓名</th>
-        <th>性别</th>
-        <th>身份证号</th>
-        <th>电话</th>
-        <th>地址</th>
-        <th style="width: 3.5em;"></th>
+        <th>申请人姓名</th>
+        <th>申请人帐号</th>
+        <th style="width: 30%;">宠物名字</th>
+        <th>处理</th>
     </tr>
     </thead>
     <tbody>
     <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
             <td><?php echo ($i); ?></td>
-            <td><?php echo ($vo["username"]); ?></td>
             <td><?php echo ($vo["realname"]); ?></td>
-            <td><?php echo ($vo["sex"]); ?></td>
-            <td><?php echo ($vo["idcard"]); ?></td>
-            <td><?php echo ($vo["phone"]); ?></td>
-            <td><?php echo ($vo["address"]); ?></td>
+            <td><?php echo ($vo["username"]); ?></td>
+            <td><?php echo ($vo["petname"]); ?></td>
             <td>
-                <a href="<?php echo U("Home/Index/user?id=$vo[id]");?>"><i class="fa fa-pencil"></i></a>
-                <a href="<?php echo U("Home/Index/deleteuser?id=$vo[id]");?>" role="button" data-toggle="modal"
-                onclick="del();"><i class="fa fa-trash-o"></i></a>
+                <a href="<?php echo U("Home/Index/applysuccess?id=$vo[apply_id]");?>" role="button" data-toggle="modal"
+                onclick="success();">通过</a>
+                <a href="<?php echo U("Home/Index/applydeny?id=$vo[apply_id]");?>" role="button" data-toggle="modal"
+                onclick="deny();">拒绝</a>
             </td>
+        </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+    </tbody>
+</table>
+<div class="header">
+    <h2>已处理</h2>
+</div>
+<table class="table" style="width: 60%;">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>申请人姓名</th>
+        <th>申请人帐号</th>
+        <th style="width: 30%;">宠物名字</th>
+        <th>处理结果</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php if(is_array($list_take)): $i = 0; $__LIST__ = $list_take;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vot): $mod = ($i % 2 );++$i;?><tr>
+            <td><?php echo ($i); ?></td>
+            <td><?php echo ($vot["realname"]); ?></td>
+            <td><?php echo ($vot["username"]); ?></td>
+            <td><?php echo ($vot["petname"]); ?></td>
+            <td><?php echo ($vot["state"]); ?></td>
         </tr><?php endforeach; endif; else: echo "" ;endif; ?>
     </tbody>
 </table>
 
 <script type="text/javascript">
-    function del() {
-        if (!confirm("确认要删除？")) {
+    function deny() {
+        if (!confirm("确认拒绝吗?")) {
+            window.event.returnValue = false;
+        }
+    }
+    function success() {
+        if(!confirm("确认通过吗?")) {
             window.event.returnValue = false;
         }
     }

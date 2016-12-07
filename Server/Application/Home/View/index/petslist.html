@@ -16,13 +16,13 @@
 </head>
 
 <body class=" theme-blue">
-    <!-- Demo page code -->
-    <script type="text/javascript">
-    $(function() {
+<!-- Demo page code -->
+<script type="text/javascript">
+    $(function () {
         var match = document.cookie.match(new RegExp('color=([^;]+)'));
         if (match) var color = match[1];
         if (color) {
-            $('body').removeClass(function(index, css) {
+            $('body').removeClass(function (index, css) {
                 return (css.match(/\btheme-\S+/g) || []).join(' ')
             })
             $('body').addClass('theme-' + color);
@@ -33,114 +33,113 @@
         });
 
     });
-    </script>
-    <style type="text/css">
+</script>
+<style type="text/css">
     #line-chart {
         height: 300px;
         width: 800px;
         margin: 0px auto;
         margin-top: 1em;
     }
-    
+
     .navbar-default .navbar-brand,
     .navbar-default .navbar-brand:hover {
         color: #fff;
     }
-    </style>
-    <script type="text/javascript">
-    $(function() {
+    .pet_taken {
+        color: #fff;
+        padding: 10px;
+        background-color: #606F8E;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
         var uls = $('.sidebar-nav > ul > *').clone();
         uls.addClass('visible-xs');
         $('#main-menu').append(uls.clone());
     });
-    </script>
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-    <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
-    <!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
-    <!--[if IE 8 ]> <body class="ie ie8 "> <![endif]-->
-    <!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
-    <!--[if (gt IE 9)|!(IE)]><!-->
-    <!--<![endif]-->
-    <div class="header">
-        <h1 class="page-title">宠物列表</h1>
-        <ul class="breadcrumb">
-            <li><a href="{:U("Home/Index/index")}">主页</a> </li>
-            <li class="active">宠物</li>
-        </ul>
+</script>
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!-- Le fav and touch icons -->
+<link rel="shortcut icon" href="../assets/ico/favicon.ico">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+<!--[if lt IE 7 ]>
+<body class="ie ie6"> <![endif]-->
+<!--[if IE 7 ]>
+<body class="ie ie7 "> <![endif]-->
+<!--[if IE 8 ]>
+<body class="ie ie8 "> <![endif]-->
+<!--[if IE 9 ]>
+<body class="ie ie9 "> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<!--<![endif]-->
+<div class="header">
+    <h1 class="page-title">宠物列表</h1>
+    <ul class="breadcrumb">
+        <li><a href="{:U("Home/Index/index")}">主页</a> </li>
+        <li class="active">宠物</li>
+    </ul>
+</div>
+<div class="main-content">
+    <div class="btn-toolbar list-toolbar">
+        <a href="{:U("Home/Index/pet")}">
+        <button class="btn btn-primary"><i class="fa fa-plus"></i>新添加宠物</button>
+        </a>
+        <div class="btn-group">
+        </div>
     </div>
-    <div class="main-content">
-        <div class="btn-toolbar list-toolbar">
-            <a href="{:U("Home/Index/pet")}"><button class="btn btn-primary" ><i class="fa fa-plus"></i>新添加宠物</button></a>
-            <div class="btn-group">
-            </div>
-        </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th style="width: 8%;">所属房间</th>
-                    <th>宠物名</th>
-                    <th>宠物种类</th>
-                    <th>年龄</th>
-                    <th>性别</th>
-                    <th>登记时间</th>
-                    <th style="width: 3.5em;"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <volist name="list" id="vo" key="k">
-                    <tr>
-                        <td>{$k}</td>
-                        <td>{$vo.roomname}</td>
-                        <td>{$vo.petname}</td>
-                        <td>{$vo.breed}</td>
-                        <td>{$vo.age}</td>
-                        <td>{$vo.sex}</td>
-                        <td>{$vo.entertime}</td>
-                        <td>
-                            <a href="{:U("Home/Index/pet?id=$vo[id]")}"><i class="fa fa-pencil"></i></a>
-                            <a href="#myModal" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a>
-                        </td>
-                    </tr>
-                </volist>
-            </tbody>
-        </table>
-        <div class="modal small fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3 id="myModalLabel">Delete Confirmation</h3>
-                    </div>
-                    <div class="modal-body">
-                        <p class="error-text"><i class="fa fa-warning modal-icon"></i>Are you sure you want to delete the user?
-                            <br>This cannot be undone.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                        <button class="btn btn-danger" data-dismiss="modal">Delete</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script src="__PUBLIC__/lib/bootstrap/js/bootstrap.js"></script>
-        <script type="text/javascript">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th style="width: 8%;">所属房间</th>
+            <th>宠物名</th>
+            <th>宠物种类</th>
+            <th>年龄</th>
+            <th>性别</th>
+            <th>登记时间</th>
+            <th style="width: 3.5em;"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <volist name="list" id="vo" key="k">
+            <tr>
+                <td>{$k}</td>
+                <td>{$vo.roomname}</td>
+                <td>{$vo.petname}</td>
+                <td>{$vo.breed}</td>
+                <td>{$vo.age}</td>
+                <td>{$vo.sex}</td>
+                <td>{$vo.entertime}</td>
+                <td>
+                    <a href="{:U("Home/Index/pet?id=$vo[id]")}"><i class="fa fa-pencil"></i></a>
+                    <a href="{:U("Home/Index/deletepet?id=$vo[id]")}" role="button" data-toggle="modal"
+                    onclick="del();"><i class="fa fa-trash-o"></i></a>
+                </td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+    <script src="__PUBLIC__/lib/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript">
         $("[rel=tooltip]").tooltip();
-        $(function() {
-            $('.demo-cancel-click').click(function() {
+        $(function () {
+            $('.demo-cancel-click').click(function () {
                 return false;
             });
         });
-        </script>
+        function del() {
+            if (!confirm("确认要删除？")) {
+                window.event.returnValue = false;
+            }
+        }
+    </script>
 </body>
 
 </html>

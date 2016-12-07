@@ -342,7 +342,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">取消</button>
-                        <button class="btn btn-danger" name="delete" onclick="form1.action='/Pets/index.php/Home/Index/pet/id/2.html';form1.submit();"
+                        <button class="btn btn-danger" name="delete" onclick="form1.action='/Pets/index.php/Home/Index/pet/id/5.html';form1.submit();"
                                 data-dismiss="modal">删除
                         </button>
                     </div>

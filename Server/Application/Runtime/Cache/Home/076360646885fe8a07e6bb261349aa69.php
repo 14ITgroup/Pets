@@ -183,7 +183,14 @@
     <div class="main-content">
 
         
-        <table class="table" style="width: 60%;">
+        <div class="header">
+    <h1 class="page-title">护工-宠物</h1>
+    <ul class="breadcrumb">
+        <li><a href="<?php echo U("Home/Index/index");?>">主页</a> </li>
+        <li class="active">照料列表</li>
+    </ul>
+</div>
+<table class="table" style="width: 60%;">
     <thead>
     <tr>
         <th>#</th>

@@ -184,39 +184,32 @@
 
         
         <div class="header">
-    <h1 class="page-title">用户记录</h1>
+    <h1 class="page-title">领养记录</h1>
     <ul class="breadcrumb">
         <li><a href="<?php echo U("Home/Index/index");?>">主页</a> </li>
-        <li class="active">用户列表</li>
+        <li class="active">领养列表</li>
     </ul>
 </div>
 <table class="table">
     <thead>
     <tr>
         <th>#</th>
-        <th>用户名</th>
-        <th>真实姓名</th>
-        <th>性别</th>
-        <th>身份证号</th>
-        <th>电话</th>
-        <th>地址</th>
+        <th style="width: 8%;">领养人</th>
+        <th>宠物名</th>
+        <th>宠物种类</th>
+        <th>宠物年龄</th>
+        <th>宠物性别</th>
         <th style="width: 3.5em;"></th>
     </tr>
     </thead>
     <tbody>
-    <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-            <td><?php echo ($i); ?></td>
-            <td><?php echo ($vo["username"]); ?></td>
-            <td><?php echo ($vo["realname"]); ?></td>
-            <td><?php echo ($vo["sex"]); ?></td>
-            <td><?php echo ($vo["idcard"]); ?></td>
-            <td><?php echo ($vo["phone"]); ?></td>
-            <td><?php echo ($vo["address"]); ?></td>
-            <td>
-                <a href="<?php echo U("Home/Index/user?id=$vo[id]");?>"><i class="fa fa-pencil"></i></a>
-                <a href="<?php echo U("Home/Index/deleteuser?id=$vo[id]");?>" role="button" data-toggle="modal"
-                onclick="del();"><i class="fa fa-trash-o"></i></a>
-            </td>
+    <?php if(is_array($list_taken)): $k = 0; $__LIST__ = $list_taken;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vot): $mod = ($k % 2 );++$k;?><tr>
+            <td><?php echo ($k); ?></td>
+            <td><?php echo ($vot["realname"]); ?></td>
+            <td><?php echo ($vot["petname"]); ?></td>
+            <td><?php echo ($vot["breed"]); ?></td>
+            <td><?php echo ($vot["age"]); ?></td>
+            <td><?php echo ($vot["sex"]); ?></td>
         </tr><?php endforeach; endif; else: echo "" ;endif; ?>
     </tbody>
 </table>
