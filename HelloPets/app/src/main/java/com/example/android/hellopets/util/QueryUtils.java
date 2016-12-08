@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.android.hellopets.data.Pet;
+import com.example.android.hellopets.data.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 public final class QueryUtils {
 
     // the ipAddress of the server
-    public static final String ipAddress = "";
+    public static final String ipAddress = "10.112.139.198";
 
     // use to mark the log this class
     public static final String LOG_TAG = QueryUtils.class.getName();
@@ -51,10 +52,21 @@ public final class QueryUtils {
                 String backreason = currentPet.getString("backreason");
                 String character = currentPet.getString("character");
                 String healthy = currentPet.getString("healthy");
+                String img = currentPet.getString("img");
 
-                // call the constructor
-                Pet pet = new Pet(id, petname, breed, age, sex, Date.valueOf(entertime), isback, backreason, character, healthy);
-
+                Integer ispass = null;
+                Pet pet = null;
+                // used in the look application
+                if (currentPet.has("ispass")) {
+                    ispass = currentPet.getInt("ispass");
+                    //表连接后返回的id不是所需要的
+                    id = currentPet.getInt("petid");
+                    // call the constructor
+                    pet = new Pet(id, petname, breed, age, sex, Date.valueOf(entertime), isback, backreason, character, healthy, img, ispass);
+                } else {
+                    // call the constructor
+                    pet = new Pet(id, petname, breed, age, sex, Date.valueOf(entertime), isback, backreason, character, healthy, img);
+                }
                 pets.add(pet);
             }
         } catch (JSONException e) {
@@ -62,5 +74,28 @@ public final class QueryUtils {
         }
 
         return pets;
+    }
+
+    public static final User extractFeatureFromUserJson(String userJSON) {
+        if (TextUtils.isEmpty(userJSON)) {
+            return null;
+        }
+
+        User user = null;
+        try {
+
+            JSONObject userObject = new JSONObject(userJSON);
+            String realname = userObject.getString("realname");
+            String sex = userObject.getString("sex");
+            String idcard = userObject.getString("idcard");
+            String phone = userObject.getString("phone");
+            String address = userObject.getString("address");
+
+            user = new User(realname, sex, idcard, phone, address);
+        } catch (JSONException e) {
+            Log.e("QueryUtils", "Problem parsing the user JSON results", e);
+        }
+
+        return user;
     }
 }

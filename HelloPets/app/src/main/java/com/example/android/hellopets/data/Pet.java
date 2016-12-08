@@ -21,6 +21,11 @@ public class Pet implements Serializable {
     private String backreason;
     private String character;
     private String healthy;
+    private String img;
+    private Integer istaken;
+
+    // 方便进行申请的查看
+    private Integer ispass;
 
     // Constructors
 
@@ -34,7 +39,7 @@ public class Pet implements Serializable {
     /**
      * full constructor
      */
-    public Pet(Integer id, Integer roomid, String petname, String breed, Integer age, String sex, Date entertime, Date leavetime, Integer isback, String backreason, String character, String healthy) {
+    public Pet(Integer id, Integer roomid, String petname, String breed, Integer age, String sex, Date entertime, Date leavetime, Integer isback, String backreason, String character, String healthy, String img, Integer istaken) {
         this.id = id;
         this.roomid = roomid;
         this.petname = petname;
@@ -47,12 +52,14 @@ public class Pet implements Serializable {
         this.backreason = backreason;
         this.character = character;
         this.healthy = healthy;
+        this.img = img;
+        this.istaken = istaken;
     }
 
     /**
      * useful constructor
      */
-    public Pet(Integer id, String petname, String breed, Integer age, String sex, Date entertime, Integer isback, String backreason, String character, String healthy) {
+    public Pet(Integer id, String petname, String breed, Integer age, String sex, Date entertime, Integer isback, String backreason, String character, String healthy, String img) {
         this.id = id;
         this.petname = petname;
         this.breed = breed;
@@ -63,6 +70,25 @@ public class Pet implements Serializable {
         this.backreason = backreason;
         this.character = character;
         this.healthy = healthy;
+        this.img = img;
+    }
+
+    /**
+     * used for look application
+     */
+    public Pet(Integer id, String petname, String breed, Integer age, String sex, Date entertime, Integer isback, String backreason, String character, String healthy, String img, Integer ispass) {
+        this.id = id;
+        this.petname = petname;
+        this.breed = breed;
+        this.age = age;
+        this.sex = sex;
+        this.entertime = entertime;
+        this.isback = isback;
+        this.backreason = backreason;
+        this.character = character;
+        this.healthy = healthy;
+        this.img = img;
+        this.ispass = ispass;
     }
 
     // Property accessors
@@ -161,5 +187,29 @@ public class Pet implements Serializable {
 
     public void setHealthy(String healthy) {
         this.healthy = healthy;
+    }
+
+    public Integer getIspass() {
+        return ispass;
+    }
+
+    public void setIspass(Integer ispass) {
+        this.ispass = ispass;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public Integer getIstaken() {
+        return istaken;
+    }
+
+    public void setIstaken(Integer istaken) {
+        this.istaken = istaken;
     }
 }
