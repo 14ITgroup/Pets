@@ -27,6 +27,11 @@ class IndexController extends Controller {
         $password = md5($password);
         $realname = I('realname');
         $sex = I('sex');
+        if($sex == "男") {
+            $sex = 'm';
+        } else {
+            $sex = 'f';
+        }
         $idcard = I('idcard');
         $phone = I('phone');
         $address = I('address');
@@ -47,16 +52,130 @@ class IndexController extends Controller {
             //$user->badrecord="";
 
             $result = $user->add();
+            // 返回用户id
             echo $result;
         }
     }
 
-    // support the data for the PetsActivity
+    /*
+     * app查看用户信息接口: appUserInfo
+     * 请求格式: 用户id => user_id
+     * 返回格式: [{"id":"3","username":"test3","sex":"m"}]
+     * */
+    public function appUserInfo() {
+        $userid = I('user_id');
+        $user = M('user');
+        $data = $user->where('id=%d', $userid)->find();
+        $this->ajaxReturn($data, 'json');
+    }
+
+    /*
+     * app用户修改密码接口: appChangePassword
+     * 请求格式: 用户名 => username
+     *          原密码 => old_password
+     *          新密码 => new_password
+     * 返回格式: -1 => 原密码错误
+     *          0 => 修改失败, 请稍后重试
+     *          1 => 修改成功
+     * */
+    public function appChangePassword() {
+        $username = I('username');
+        $old_password = md5(I('old_password'));
+        $new_password = md5(I('new_password'));
+
+        $user = M('user')
+            ->where("username='%s' AND password='%s'", $username, $old_password)
+            ->find();
+        if(!$user) {
+            // 原密码错误
+            echo "-1";
+            return;
+        }
+        $new_user = M('user')->where("username='%s'", $username)
+            ->setField('password', $new_password);
+        if($new_user === false) {
+            // 修改失败, 请稍后重试
+            echo "0";
+        } else {
+            // 修改成功
+            echo "1";
+        }
+    }
+
+
+    /*
+     * app用户信息修改接口: appChangeUserInfo
+     * 请求格式: 用户名   => username
+     *          真实姓名 => realname
+     *          性别    => sex
+     *          身份证号 => idcard
+     *          电话号码 => phone
+     *          地址    => address
+     * 返回格式: 0 => 修改失败
+     *          1 => 修改成功
+     * */
+    public function appChangeUserInfo() {
+        $username = I('username');
+        $realname = I('realname');
+        $sex = I('sex');
+        $idcard = I('idcard');
+        $phone = I('phone');
+        $address = I('address');
+
+        $new_user = M('user');
+        $new_user->realname = $realname;
+        $new_user->sex = $sex;
+        $new_user->idcard = $idcard;
+        $new_user->phone = $phone;
+        $new_user->address = $address;
+
+        $result = $new_user->where("username='%s'", $username)
+            ->save();
+        if($result === false) {
+            // 修改失败
+            echo "0";
+        } else {
+            // 修改成功
+            echo "1";
+        }
+    }
+
+    /*
+     * 返回App宠物信息接口, 提供偏好查询
+     * 请求格式: 种类 => breed
+     *          性别 => sex
+     *          性格 => character
+     *          标志位 => query
+     * */
     public function appGetPets(){
-        $pet = M('pet');
-        // find 方法只会返回第一条记录
-        $data = $pet->where('istaken=0')->select();
-        $this->ajaxReturn($data,'json');
+        $breed = I('breed');
+        $sex = I('sex');
+        $ch = I('character');
+        $query = I('query');
+        if($breed == '' && $sex == '' && $ch == '') {
+            $pet = M('pet');
+            // find 方法只会返回第一条记录
+            $data = $pet->where('istaken=0')->select();
+            $this->ajaxReturn($data,'json');
+        } else {
+            $pet = M('pet');
+            $map['breed'] = array('like', '%'.$breed.'%');
+            if($sex != '') {
+                $map['sex'] = array('eq', $sex);
+            }
+            $map['character'] = array('like', '%'.$ch.'%');
+            if($query == '0') {
+                $map['_logic'] = 'OR';
+                $where['_complex'] = $map;
+                $where['istaken'] = array('eq', 0);
+                $data = $pet->where($where)->select();
+            } else { // $query == '1'
+                $map['_logic'] = 'AND';
+                $map['istaken'] = array('eq', 0);
+                $data = $pet->where($map)->select();
+            }
+            $this->ajaxReturn($data, 'json');
+        }
     }
 
     // deal with the application of getting a pet home

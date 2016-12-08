@@ -11,7 +11,10 @@
                     </div>
                     <div class="form-group">
                         <label>性别</label>
-                        <input type="text" name="sex" id="sex" value="{$list.sex}" class="form-control">
+                        <select name="sex" id="sex">
+                            <option value="m" {$list.male}>男</option>
+                            <option value="f" {$list.female}>女</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>电话</label>

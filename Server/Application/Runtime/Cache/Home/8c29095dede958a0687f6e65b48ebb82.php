@@ -13,14 +13,6 @@
 
     <script src="/Pets/Public/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
 
-    <script src="/Pets/Public/lib/jQuery-Knob/js/jquery.knob.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(function () {
-            $(".knob").knob();
-        });
-    </script>
-
-
     <link rel="stylesheet" type="text/css" href="/Pets/Public/stylesheets/theme.css">
     <link rel="stylesheet" type="text/css" href="/Pets/Public/stylesheets/premium.css">
 
@@ -144,11 +136,11 @@
             </ul>
         </li>
         <li data-popover="true" rel="popover" data-placement="right"><a href="#" data-target=".premium-menu"
-                                                                        class="nav-header collapsed"
+                                                                        class="nav-header"
                                                                         data-toggle="collapse"><i
                 class="fa fa-fw fa-fighter-jet"></i>宠物管理<i class="fa fa-collapse"></i></a></li>
         <li>
-            <ul class="premium-menu nav nav-list collapse">
+            <ul class="premium-menu nav nav-list collapse in">
                 <li class="visible-xs visible-sm"><a href="#">- Premium features require a license -</a>
                 <li><a href="<?php echo U('/Home/Index/petslist');?>"><span class="fa fa-caret-right"></span>宠物列表</a></li>
                 <li><a href="<?php echo U('/Home/Index/lookafter');?>"><span class="fa fa-caret-right"></span>照料列表</a></li>
@@ -191,43 +183,15 @@
     <div class="main-content">
 
         
-        <script>
-    function checkUser() {
-        var name = document.getElementById("name").value;
-        var account = document.getElementById("account").value;
-        var password = document.getElementById("password").value;
-        var power = document.getElementById("power").value;
-        if (name == "") {
-            alert("用户名不能为空");
-            return false;
-        }
-        if (account == "") {
-            alert("用户名不能为空");
-            return false;
-        }
-        if (password == "") {
-            alert("密码不能为空");
-            return false;
-        }
-        if (power != "0" && power != "1") {
-            alert("权限格式不正确");
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-</script>
-
-<div class="row">
+        <div class="row">
     <div class="col-md-4">
         <br>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active in" id="home">
                 <form id="tab" method='post' onsubmit="return checkUser();">
                     <div class="form-group">
-                        <label>用户名</label>
-                        <input type="text" name="name" id="name" value="<?php echo ($list[0]['adminname']); ?>" class="form-control">
+                        <label>昵称</label>
+                        <input type="text" name="name" id="username" value="<?php echo ($list[0]['adminname']); ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>帐号</label>
@@ -236,20 +200,42 @@
                     </div>
                     <div class="form-group">
                         <label>密码</label>
-                        <input type="text" name="password" id="password" class="form-control">
+                        <input type="password" name="password" id="password" class="form-control">
                     </div>
-
             </div>
 
             <div class="btn-toolbar list-toolbar">
-                <button class="btn btn-primary"><i class="fa fa-save"></i> 保存</button>
+                <button class="btn btn-primary" name="save" id="save"><i class="fa fa-save"></i> 保存</button>
                 <a class="btn btn-primary" href="javascript:history.go(-1);">返回</a>
             </div>
             </form>
         </div>
     </div>
-
-
+</div>
+<script>
+    function checkUser() {
+        var name = $("#username").val();
+        var account = $("#account").val();
+        var password = $("#password").val();
+        if (name == "") {
+            alert("昵称不能为空");
+            return false;
+        }
+        if (account == "") {
+            alert("帐号不能为空");
+            return false;
+        }
+        if (password.trim() == "") {
+            alert("密码不能为空");
+            return false;
+        }
+        if (password.length <= 2) {
+            alert("密码不能少于等于2位");
+            return false;
+        }
+        return true;
+    }
+</script>
         
 
 

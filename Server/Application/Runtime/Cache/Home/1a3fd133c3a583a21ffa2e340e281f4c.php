@@ -213,9 +213,8 @@
             <td><?php echo ($vo["phone"]); ?></td>
             <td><?php echo ($vo["address"]); ?></td>
             <td>
-                <a href="<?php echo U("Home/Index/user?id=$vo[id]");?>"><i class="fa fa-pencil"></i></a>
-                <a href="<?php echo U("Home/Index/deleteuser?id=$vo[id]");?>" role="button" data-toggle="modal"
-                onclick="del();"><i class="fa fa-trash-o"></i></a>
+                <a href="<?php echo U("Home/Index/deleteuser?id=$vo[id]");?>" class="btn btn-primary" role="button" data-toggle="modal"
+                onclick="del();">删除</a>
             </td>
         </tr><?php endforeach; endif; else: echo "" ;endif; ?>
     </tbody>

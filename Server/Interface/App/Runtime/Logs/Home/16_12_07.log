@@ -2664,3 +2664,13 @@ INFO: [ app_begin ] --END-- [ RunTime:0.000738s ]
 SQL: SHOW COLUMNS FROM `pet` [ RunTime:0.0058s ]
 SQL: SELECT * FROM `pet` WHERE ( id='5' )  [ RunTime:0.0005s ]
 
+[ 2016-12-07T22:13:12+08:00 ] 222.195.145.151 /Pets/Interface/index.php/Home/Index/appGetPets
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000336s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000482s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000607s ]
+SQL: SHOW COLUMNS FROM `pet` [ RunTime:0.0041s ]
+SQL: SELECT * FROM `pet` WHERE ( istaken=0 )  [ RunTime:0.0003s ]
+

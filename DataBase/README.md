@@ -12,7 +12,7 @@ breed	| varchar | 种类
 age		| int	  | 年龄
 sex		| varchar | 性别
 entertime| date	  | 收容日期
-leavetime| date	  | 离开日期	| null
+leavetime| date	  | 领养日期	| null
 isback	| int	  | 是否退回 	| 0
 backreason | varchar | 退回原因 | null
 character  | varchar | 性格		| null

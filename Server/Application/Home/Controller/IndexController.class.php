@@ -318,9 +318,9 @@ class IndexController extends Controller
 
     // 领养记录
     public function petsUser() {
-        $data = M()->field('pet.id pet_id, petname, breed, age, sex, apply.userid')
+        $data = M()->field('pet.id pet_id, petname, breed, age, sex, leavetime, apply.userid')
             ->table('pet pet, application apply')
-            ->where('pet.istaken=1 AND pet.id=apply.petid')
+            ->where('pet.istaken=1 AND pet.id=apply.petid AND ispass=1')
             ->select();
         foreach ($data as &$item) {
             $userid = $item['userid'];
@@ -339,6 +339,13 @@ class IndexController extends Controller
     public function careworkers() {
         $careworkers = M('careworker');
         $vo = $careworkers->select();
+        foreach ($vo as &$item) {
+            if($item['sex'] == 'm') {
+                $item['sex'] = '男';
+            } else {
+                $item['sex'] = '女';
+            }
+        }
         $this->assign("list", $vo);
         $this->display();
     }
@@ -349,6 +356,11 @@ class IndexController extends Controller
         if($id) { // 修改护工信息
             $careworker = M('careworker');
             $vo = $careworker->where('id=%d', $id)->find();
+            if($vo['sex'] == 'm') {
+                $vo['male'] = 'selected="true"';
+            } else {
+                $vo['female'] = 'selected="true"';
+            }
             $this->assign("list", $vo);
             $this->display();
             if(IS_POST) {
@@ -361,7 +373,7 @@ class IndexController extends Controller
                     $careworker->idcard = $_POST['idcard'];
                     $careworker->address = $_POST['address'];
 
-                    $test = M('careworker')->where("idcard='%s'", $careworker->idcard)->find();
+                    $test = M('careworker')->where("idcard='%s' AND id<>%d", $careworker->idcard, $id)->find();
                     if(count($test)) {
                         echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
                         echo "<script>alert('身份证重复');</script>";
@@ -378,7 +390,7 @@ class IndexController extends Controller
                     }
                 }
             }
-        } else {
+        } else {    // 添加护工信息
             $this->display();
             if(isset($_POST['save'])) {
                 $careworker = M('careworker');
@@ -411,12 +423,19 @@ class IndexController extends Controller
     public function users() {
         $user = M('user');
         $vo = $user->select();
+        foreach ($vo as &$item) {
+            if($item['sex'] == 'm') {
+                $item['sex'] = '男';
+            } else {
+                $item['sex'] = '女';
+            }
+        }
         $this->assign("list", $vo);
         $this->display();
     }
 
     // 修改用户信息
-    public function user() {
+/*    public function user() {
         $id = I('request.id');
         $users = M('user');
         $vo = $users->where('id=' . $id)->select();
@@ -444,7 +463,7 @@ class IndexController extends Controller
                 }
             }
         }
-    }
+    }*/
 
     //删除用户
     public function deleteuser() {
@@ -473,6 +492,7 @@ class IndexController extends Controller
         $data1 = M()->field('apply.id apply_id, realname, username, petid, petname, ispass')
             ->table('application apply, user user, pet pet')
             ->where('apply.userid=user.id AND apply.petid=pet.id AND ispass<>0')
+            ->order('ispass desc')
             ->select();
         foreach ($data1 as &$item) {
             if($item['ispass'] == 1) {
@@ -495,9 +515,14 @@ class IndexController extends Controller
             // 设ispass标志位为1
             $apply->where('id=%d', $id)->lock(true)->setField('ispass', 1);
             // 设宠物istaken标志位为1
+            $time_now = time();
+            $date_now = date("Y-m-d", $time_now);
+            $data = array('istaken'=>1, 'leavetime'=>$date_now);
             $petid = M('application')->where('id=%d', $id)->getField('petid');
             $pet = M('pet')->where('id=%d', $petid)
-                ->setField('istaken', 1);
+                ->setField($data);
+            // 其余申请这只宠物待审核的记录自动设为拒绝
+            $apply->where('petid=%d AND ispass=0', $petid)->setField('ispass', -1);
             // 删除lookafter表中对应的宠物记录
             $lookafter = M('lookafter')->where('petid=%d', $petid)->delete();
             // 提交事务
@@ -548,20 +573,23 @@ class IndexController extends Controller
             $this->assign("id", $id);
             $this->display();
             if (IS_POST) {
-                $admin = M('admin');
-                $admin->id = $id;
-                $admin->adminname = $_POST['name'];
-                $admin->adminaccount = $_POST['account'];
-                $password = $_POST['password'];
-                //采用md5加密
-                $admin->password = md5($password);
-                $result = $admin->save();
-                if ($result) {
-                    echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
-                    echo "<script>alert('修改成功');location.href='" . $_SERVER["HTTP_REFERER"] . "';</script>";
-                } else {
-                    echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
-                    echo '<script type="text/javascript">alert("修改失败")</script>';
+                if(isset($_POST['save'])) {
+                    $admin = M('admin');
+                    $admin->id = $id;
+                    $admin->adminname = $_POST['name'];
+                    $admin->adminaccount = $_POST['account'];
+                    $password = $_POST['password'];
+                    //采用md5加密
+                    $admin->adminpassword = md5($password);
+                    $result = $admin->save();
+                    if ($result !== false) {
+                        echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
+                        echo "<script>alert('修改成功');</script>";
+                        $this->redirect("/Home/Index/admins");
+                    } else {
+                        echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
+                        echo '<script type="text/javascript">alert("修改失败")</script>';
+                    }
                 }
             }
         }

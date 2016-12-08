@@ -188,57 +188,24 @@
         <div class="panel panel-default">
             <div class="panel-heading no-collapse">最新用户<span class="label label-warning">10</span></div>
             <table class="table table-bordered table-striped">
-              <thead>
+                <thead>
                 <tr>
-                  <th>用户名</th>
-                  <th>真实姓名</th>
-                  <th>电话</th>
+                    <th>用户名</th>
+                    <th>真实姓名</th>
+                    <th>电话</th>
                 </tr>
-              </thead>
-              <tbody>
-                 <?php if(is_array($list)): $i = 0; $__LIST__ = array_slice($list,0,10,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-                      <td><?php echo ($vo["username"]); ?></td>
-                      <td><?php echo ($vo["realname"]); ?></td>
-                      <td><?php echo ($vo["phone"]); ?></td>
+                </thead>
+                <tbody>
+                <?php if(is_array($list)): $i = 0; $__LIST__ = array_slice($list,0,10,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
+                        <td><?php echo ($vo["username"]); ?></td>
+                        <td><?php echo ($vo["realname"]); ?></td>
+                        <td><?php echo ($vo["phone"]); ?></td>
                     </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-              </tbody>
+                </tbody>
             </table>
         </div>
+    </div>
 </div>
-<div class="row">
-    <div class="col-sm-6 col-md-6">
-        <div class="panel panel-default"> 
-            <div class="panel-heading no-collapse">
-                <span class="panel-icon pull-right">
-                </span>未处理业务
-            </div>
-            <table class="table list">
-             <thead>
-                <tr>
-                  <th>#</th>
-                  <th>订单</th>
-                  <th>商品</th>
-                  <th>订货数量</th>
-                  <th>剩余数量</th>
-                  <th>下单时间</th>
-                  <th>状态</th>             
-                </tr>
-              </thead>
-              <tbody>
-                  <?php if(is_array($order)): $i = 0; $__LIST__ = $order;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$order): $mod = ($i % 2 );++$i;?><tr>
-                          <td><?php echo ($i); ?></td>
-                          <td><?php echo ($order["order_id"]); ?></td>
-                          <td><?php echo ($order["goods_name"]); ?></td>
-                          <td><?php echo ($order["goodsnum"]); ?></td>
-                          <td><?php echo ($order["goodsleft"]); ?></td>
-                          <td><?php echo ($order["addtime"]); ?></td>
-                          <td><?php echo ($order["order_state"]); ?></td>
-                        </tr><?php endforeach; endif; else: echo "" ;endif; ?>     
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
         
 
 

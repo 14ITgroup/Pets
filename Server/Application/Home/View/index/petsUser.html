@@ -9,7 +9,8 @@
     <thead>
     <tr>
         <th>#</th>
-        <th style="width: 8%;">领养人姓名</th>
+        <th>领养时间</th>
+        <th style="width: 12%;">领养人姓名</th>
         <th>领养人帐号</th>
         <th>宠物名</th>
         <th>宠物种类</th>
@@ -22,6 +23,7 @@
     <volist name="list_taken" id="vot" key="k">
         <tr>
             <td>{$k}</td>
+            <td>{$vot.leavetime}</td>
             <td>{$vot.realname}</td>
             <td>{$vot.username}</td>
             <td>{$vot.petname}</td>

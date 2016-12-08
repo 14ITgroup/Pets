@@ -196,7 +196,10 @@
                     </div>
                     <div class="form-group">
                         <label>性别</label>
-                        <input type="text" name="sex" id="sex" value="<?php echo ($list["sex"]); ?>" class="form-control">
+                        <select name="sex" id="sex">
+                            <option value="m" <?php echo ($list["male"]); ?>>男</option>
+                            <option value="f" <?php echo ($list["female"]); ?>>女</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>电话</label>

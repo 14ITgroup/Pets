@@ -13,14 +13,6 @@
 
     <script src="/Pets/Public/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
 
-    <script src="/Pets/Public/lib/jQuery-Knob/js/jquery.knob.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(function () {
-            $(".knob").knob();
-        });
-    </script>
-
-
     <link rel="stylesheet" type="text/css" href="/Pets/Public/stylesheets/theme.css">
     <link rel="stylesheet" type="text/css" href="/Pets/Public/stylesheets/premium.css">
 
@@ -144,11 +136,11 @@
             </ul>
         </li>
         <li data-popover="true" rel="popover" data-placement="right"><a href="#" data-target=".premium-menu"
-                                                                        class="nav-header collapsed"
+                                                                        class="nav-header"
                                                                         data-toggle="collapse"><i
                 class="fa fa-fw fa-fighter-jet"></i>宠物管理<i class="fa fa-collapse"></i></a></li>
         <li>
-            <ul class="premium-menu nav nav-list collapse">
+            <ul class="premium-menu nav nav-list collapse in">
                 <li class="visible-xs visible-sm"><a href="#">- Premium features require a license -</a>
                 <li><a href="<?php echo U('/Home/Index/petslist');?>"><span class="fa fa-caret-right"></span>宠物列表</a></li>
                 <li><a href="<?php echo U('/Home/Index/lookafter');?>"><span class="fa fa-caret-right"></span>照料列表</a></li>
