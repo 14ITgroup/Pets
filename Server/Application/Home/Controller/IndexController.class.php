@@ -84,6 +84,17 @@ class IndexController extends Controller
                     $room->id = $id;
                     $room->name = $_POST['name'];
                     $room->capacity = $_POST['capacity'];
+					
+					//修改容量不能小于当前容纳数量
+					$pet=M('pet');
+					$temp=$pet->where("roomid=" . $id)->select();
+		    
+					if(count($temp)>$room->capacity){
+						echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
+                        echo "<script>alert('房间容量不能小于当前房间已有宠物数量');</script>";
+						return;
+					}
+			
                     $result = $room->save();
                     if($result) {
                         echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
