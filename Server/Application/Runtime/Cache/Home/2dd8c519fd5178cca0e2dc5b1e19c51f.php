@@ -202,6 +202,10 @@
     <link rel="stylesheet" type="text/css" href="/Pets/Public/webuploader-0.1.5/webuploader.css">
     <!--引入JS-->
     <script type="text/javascript" src="/Pets/Public/webuploader-0.1.5/webuploader.js"></script>
+
+    <!-- ZUI 标准版压缩后的 CSS 文件 -->
+    <link rel="stylesheet" href="/Pets/Public/datepicker/datetimepicker.min.css">
+
 </head>
 
 <body class=" theme-blue">
@@ -322,7 +326,7 @@
                         </div>
                         <div class="form-group">
                             <label>到达时间</label>
-                            <input type="text" id="entertime" name="entertime" class="form-control" value="<?php echo ($list[0]["entertime"]); ?>">
+                            <input type="text" id="entertime" name="entertime" class="form-control form-date" readonly value="<?php echo ($list[0]["entertime"]); ?>">
                         </div>
                         <div class="btn-toolbar list-toolbar">
                             <button class="btn btn-primary" id="save" name="save"><i class="fa fa-save"></i> 保存</button>
@@ -344,7 +348,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">取消</button>
-                        <button class="btn btn-danger" name="delete" onclick="form1.action='/Pets/index.php/Home/Index/pet/id/5.html';form1.submit();"
+                        <button class="btn btn-danger" name="delete" onclick="form1.action='/Pets/index.php/Home/Index/pet.html';form1.submit();"
                                 data-dismiss="modal">删除
                         </button>
                     </div>
@@ -354,6 +358,8 @@
     </form>
     <script src="/Pets/Public/lib/bootstrap/js/bootstrap.js"></script>
     <script src="/Pets/Public/lib/jquery-1.11.1.min.js"></script>
+    <!-- ZUI 标准版压缩后的 JavaScript 文件 -->
+    <script src="/Pets/Public/datepicker/datetimepicker.min.js"></script>
     <script type="text/javascript">
         $("#save").on("click", function(){
             var image = $('#firstphopo')[0].src;
@@ -371,6 +377,21 @@
         $("#clear_img").on('click', function() {
             $('#firstphopo').attr('src', "");
         })
+    </script>
+    <script type="text/javascript" >
+        // 日期选择插件
+        $(".form-date").datetimepicker(
+                {
+                    language:  "zh-CN",
+                    weekStart: 1,
+                    todayBtn:  1,
+                    autoclose: 1,
+                    todayHighlight: 1,
+                    startView: 2,
+                    minView: 2,
+                    forceParse: 0,
+                    format: "yyyy-mm-dd"
+                });
     </script>
     <script type="text/javascript">
         jQuery(function () {

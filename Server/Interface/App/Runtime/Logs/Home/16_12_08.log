@@ -2029,3 +2029,119 @@ INFO: [ app_begin ] --END-- [ RunTime:0.000360s ]
 SQL: SHOW COLUMNS FROM `user` [ RunTime:0.0035s ]
 SQL: SELECT * FROM `user` WHERE ( id=3 )  [ RunTime:0.0006s ]
 
+[ 2016-12-08T18:37:57+08:00 ] 222.195.145.151 /Pets/Interface/index.php/Home/Index/appGetPets?breed=d&sex=f&character=1&query=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000262s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000365s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000389s ]
+SQL: SHOW COLUMNS FROM `pet` [ RunTime:0.0049s ]
+SQL: SELECT * FROM `pet` WHERE `breed` LIKE '%d%' AND `sex` = 'f' AND `character` LIKE '%1%' AND `istaken` = 0  [ RunTime:0.0003s ]
+
+[ 2016-12-08T18:39:30+08:00 ] 222.195.145.151 /Pets/Interface/index.php/Home/Index/appGetPets?breed=d&sex=f&character=1&query=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000859s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001095s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001191s ]
+SQL: SHOW COLUMNS FROM `pet` [ RunTime:0.0119s ]
+SQL: SELECT * FROM `pet` WHERE `breed` LIKE '%d%' AND `sex` = 'f' AND `character` LIKE '%1%' AND `istaken` = 0  [ RunTime:0.0008s ]
+
+[ 2016-12-08T18:39:36+08:00 ] 222.195.145.151 /Pets/Interface/index.php/Home/Index/appChangeUserInfo?user_id=7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001169s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001415s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001567s ]
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.0057s ]
+SQL: UPDATE `user` SET `realname`='',`sex`='',`idcard`='',`phone`='',`address`='' WHERE ( username='' ) [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000752s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000794s ]
+
+[ 2016-12-08T18:39:39+08:00 ] 222.195.145.151 /Pets/Interface/index.php/Home/Index/appGetPets?breed=d&sex=f&character=1&query=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000421s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000550s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000597s ]
+SQL: SHOW COLUMNS FROM `pet` [ RunTime:0.0067s ]
+SQL: SELECT * FROM `pet` WHERE `breed` LIKE '%d%' AND `sex` = 'f' AND `character` LIKE '%1%' AND `istaken` = 0  [ RunTime:0.0004s ]
+
+[ 2016-12-08T18:40:40+08:00 ] 222.195.145.151 /Pets/Interface/index.php/Home/Index/appGetPets?breed=d&sex=f&character=1&query=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000285s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000395s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000423s ]
+SQL: SHOW COLUMNS FROM `pet` [ RunTime:0.0056s ]
+SQL: SELECT * FROM `pet` WHERE `breed` LIKE '%d%' AND `sex` = 'f' AND `character` LIKE '%1%' AND `istaken` = 0  [ RunTime:0.0003s ]
+
+[ 2016-12-08T18:40:43+08:00 ] 222.195.145.151 /Pets/Interface/index.php/Home/Index/appChangeUserInfo?user_id=7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000860s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000434s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000473s ]
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.0049s ]
+SQL: UPDATE `user` SET `realname`='',`sex`='',`idcard`='',`phone`='',`address`='' WHERE ( username='' ) [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000522s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000552s ]
+
+[ 2016-12-08T18:40:46+08:00 ] 222.195.145.151 /Pets/Interface/index.php/Home/Index/appGetPets?breed=d&sex=f&character=1&query=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000891s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001078s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001174s ]
+SQL: SHOW COLUMNS FROM `pet` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `pet` WHERE `breed` LIKE '%d%' AND `sex` = 'f' AND `character` LIKE '%1%' AND `istaken` = 0  [ RunTime:0.0004s ]
+
+[ 2016-12-08T18:41:13+08:00 ] 222.195.145.151 /Pets/Interface/index.php/Home/Index/appGetWaiting?user_id=7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000835s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001084s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001179s ]
+SQL: SHOW COLUMNS FROM `pet` [ RunTime:0.0079s ]
+SQL: SELECT * FROM pet pet,application apply WHERE ( userid=7 AND pet.id=apply.petid )  [ RunTime:0.0007s ]
+
+[ 2016-12-08T18:42:40+08:00 ] 222.195.145.151 /Pets/Interface/index.php/Home/Index/appGetPets?breed=d&sex=f&character=1&query=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000845s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001423s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001532s ]
+SQL: SHOW COLUMNS FROM `pet` [ RunTime:0.0072s ]
+SQL: SELECT * FROM `pet` WHERE `breed` LIKE '%d%' AND `sex` = 'f' AND `character` LIKE '%1%' AND `istaken` = 0  [ RunTime:0.0005s ]
+
+[ 2016-12-08T18:42:45+08:00 ] 222.195.145.151 /Pets/Interface/index.php/Home/Index/appUserInfo?user_id=7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000558s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001139s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001205s ]
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.0066s ]
+SQL: SELECT * FROM `user` WHERE ( id=7 ) LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2016-12-08T18:42:55+08:00 ] 222.195.145.151 /Pets/Interface/index.php/Home/Index/appGetPets?breed=d&sex=f&character=1&query=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000882s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001103s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001201s ]
+SQL: SHOW COLUMNS FROM `pet` [ RunTime:0.0115s ]
+SQL: SELECT * FROM `pet` WHERE `breed` LIKE '%d%' AND `sex` = 'f' AND `character` LIKE '%1%' AND `istaken` = 0  [ RunTime:0.0008s ]
+
