@@ -10,7 +10,7 @@ use Think\Model\ViewModel;
 
 class PetsViewModel extends ViewModel {
     public $viewFields = array(
-        'pet' => array('id', 'roomid', 'petname', 'img', 'breed', 'age', 'sex', 'entertime'),
+        'pet' => array('id', 'roomid', 'petname', 'img', 'breed', 'age', 'character', 'sex', 'entertime'),
         'room' => array('id' => 'room_id', 'name' => 'room_name', 'capacity', 'nownum', '_on'=>'pet.roomid=room.id'),
         'careworker' => array('id' => 'careworker_id', 'name' => 'careworker_name',
             'sex' => 'careworker_sex', 'phone')

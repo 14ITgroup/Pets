@@ -173,8 +173,16 @@ class IndexController extends Controller
             $mod2 = M('room')->where("nownum<capacity")->select();
             $care_mod = M('careworker')->select();
             $care_ids = M('lookafter')->where("petid=%d", $id)->select();
-            // 绑定宠物基本信息
-            $this->assign("list", $pet);
+           
+			
+			if($pet[0]['sex'] == 'm') {
+                $pet[0]['male'] = 'selected="true"';
+            } else {
+                $pet[0]['female'] = 'selected="true"';
+            }
+			 // 绑定宠物基本信息
+			$this->assign("list", $pet);
+            
             // 绑定房间
             foreach ($mod2 as &$item) {
                 if($item['id'] == $old_roomid) {
@@ -199,6 +207,7 @@ class IndexController extends Controller
                 $pet_data['roomid'] = I('roomsclassify');
                 $pet_data['breed'] = I('category');
                 $pet_data['age'] = I('age');
+				$pet_data['character']=I('character');
                 $pet_data['sex'] = I('sex');
                 $pet_data['entertime'] = I('entertime');
                 $careworkers = I('careworkers');
@@ -250,6 +259,7 @@ class IndexController extends Controller
                 $pet_data['roomid'] = I('roomsclassify');
                 $pet_data['breed'] = I('category');
                 $pet_data['age'] = I('age');
+				$pet_data['character']=I('character');
                 $pet_data['sex'] = I('sex');
                 $pet_data['entertime'] = I('entertime');
                 $careworkers = I('careworkers');

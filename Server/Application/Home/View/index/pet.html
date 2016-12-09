@@ -139,9 +139,16 @@
                             <label>年龄</label>
                             <input type="text" id="age" name="age" class="form-control" value="{$list[0].age}">
                         </div>
+						<div class="form-group">
+                            <label>性格</label>
+                            <input type="text" id="character" name="character" class="form-control" value="{$list[0].character}">
+                        </div>
                         <div class="form-group">
                             <label>性别</label>
-                            <input type="text" id="sex" name="sex" class="form-control" value="{$list[0].sex}">
+							<select name="sex" id="sex">
+								<option value="m" {$list[0].male}>雄性</option>
+								<option value="f" {$list[0].female}>雌性</option>
+							</select>
                         </div>
                         <div class="form-group">
                             <label>到达时间</label>
