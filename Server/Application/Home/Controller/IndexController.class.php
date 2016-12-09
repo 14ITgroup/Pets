@@ -84,17 +84,17 @@ class IndexController extends Controller
                     $room->id = $id;
                     $room->name = $_POST['name'];
                     $room->capacity = $_POST['capacity'];
-					
+
 					//修改容量不能小于当前容纳数量
 					$pet=M('pet');
 					$temp=$pet->where("roomid=" . $id)->select();
-		    
+
 					if(count($temp)>$room->capacity){
 						echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
                         echo "<script>alert('房间容量不能小于当前房间已有宠物数量');</script>";
 						return;
 					}
-			
+
                     $result = $room->save();
                     if($result) {
                         echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
@@ -173,8 +173,8 @@ class IndexController extends Controller
             $mod2 = M('room')->where("nownum<capacity")->select();
             $care_mod = M('careworker')->select();
             $care_ids = M('lookafter')->where("petid=%d", $id)->select();
-           
-			
+
+
 			if($pet[0]['sex'] == 'm') {
                 $pet[0]['male'] = 'selected="true"';
             } else {
@@ -182,7 +182,7 @@ class IndexController extends Controller
             }
 			 // 绑定宠物基本信息
 			$this->assign("list", $pet);
-            
+
             // 绑定房间
             foreach ($mod2 as &$item) {
                 if($item['id'] == $old_roomid) {
@@ -546,6 +546,9 @@ class IndexController extends Controller
             $apply->where('petid=%d AND ispass=0', $petid)->setField('ispass', -1);
             // 删除lookafter表中对应的宠物记录
             $lookafter = M('lookafter')->where('petid=%d', $petid)->delete();
+            // 房间nownum - 1
+            $roomid = M('pet')->where("id=%d", $petid)->getField('roomid');
+            $old_room = M('room')->where("id=%d", $roomid)->setDec('nownum', 1);
             // 提交事务
             $apply->commit();
             echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';

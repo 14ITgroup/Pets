@@ -320,13 +320,20 @@
                             <label>年龄</label>
                             <input type="text" id="age" name="age" class="form-control" value="<?php echo ($list[0]["age"]); ?>">
                         </div>
+						<div class="form-group">
+                            <label>性格</label>
+                            <input type="text" id="character" name="character" class="form-control" value="<?php echo ($list[0]["character"]); ?>">
+                        </div>
                         <div class="form-group">
                             <label>性别</label>
-                            <input type="text" id="sex" name="sex" class="form-control" value="<?php echo ($list[0]["sex"]); ?>">
+							<select name="sex" id="sex">
+								<option value="m" <?php echo ($list[0]["male"]); ?>>雄性</option>
+								<option value="f" <?php echo ($list[0]["female"]); ?>>雌性</option>
+							</select>
                         </div>
                         <div class="form-group">
                             <label>到达时间</label>
-                            <input type="text" id="entertime" name="entertime" class="form-control form-date" readonly value="<?php echo ($list[0]["entertime"]); ?>">
+                            <input type="text" id="entertime" name="entertime" placeholder="点我" class="form-control form-date" readonly value="<?php echo ($list[0]["entertime"]); ?>">
                         </div>
                         <div class="btn-toolbar list-toolbar">
                             <button class="btn btn-primary" id="save" name="save"><i class="fa fa-save"></i> 保存</button>
