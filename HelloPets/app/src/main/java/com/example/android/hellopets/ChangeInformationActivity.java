@@ -29,6 +29,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import static com.example.android.hellopets.R.id.idcard;
+
 public class ChangeInformationActivity extends AppCompatActivity {
 
     private EditText realnameEditText = null;
@@ -57,7 +59,7 @@ public class ChangeInformationActivity extends AppCompatActivity {
         sexRadioGroup = (RadioGroup) findViewById(R.id.usersex);
         maleRadioButton = (RadioButton) findViewById(R.id.male);
         femaleRadioButton = (RadioButton) findViewById(R.id.female);
-        idcardEditText = (EditText) findViewById(R.id.idcard);
+        idcardEditText = (EditText) findViewById(idcard);
         phoneEditText = (EditText) findViewById(R.id.phone);
         addressEditText = (EditText) findViewById(R.id.address);
         changeButton = (Button) findViewById(R.id.change);
@@ -128,6 +130,13 @@ public class ChangeInformationActivity extends AppCompatActivity {
         final String idcard = idcardEditText.getText().toString();
         final String phone = phoneEditText.getText().toString();
         final String address = addressEditText.getText().toString();
+//        Log.e("sex213", usersex);
+        final String sexSend;
+        if(usersex.equals("男")) {
+            sexSend = "m";
+        } else {
+            sexSend = "f";
+        }
 
         if (realname.equals("")) {
             Toast.makeText(ChangeInformationActivity.this, "真实姓名不能为空", Toast.LENGTH_SHORT).show();
@@ -180,7 +189,7 @@ public class ChangeInformationActivity extends AppCompatActivity {
                 String username = sharedPreferences.getString(getString(R.string.username), "");
                 map.put("username", username);
                 map.put("realname", realname);
-                map.put("sex", usersex);
+                map.put("sex", sexSend);
                 map.put("idcard", idcard);
                 map.put("phone", phone);
                 map.put("address", address);

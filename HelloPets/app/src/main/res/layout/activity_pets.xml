@@ -33,21 +33,25 @@
         <TextView
             style="@style/pet_attribute"
             android:text="昵称"
+            android:textSize="20sp"
             android:textColor="#5C5C5C" />
 
         <TextView
             style="@style/pet_attribute"
             android:text="品种"
+            android:textSize="20sp"
             android:textColor="#5C5C5C" />
 
         <TextView
             style="@style/pet_attribute"
             android:text="性别"
+            android:textSize="20sp"
             android:textColor="#5C5C5C" />
 
         <TextView
             style="@style/pet_attribute"
             android:text="年龄"
+            android:textSize="20sp"
             android:textColor="#5C5C5C" />
     </LinearLayout>
 
@@ -63,7 +67,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="16dp"
             android:divider="@android:color/darker_gray"
-            android:dividerHeight="2dp"
+            android:dividerHeight="1dp"
             android:orientation="vertical" />
 
     </android.support.v4.widget.SwipeRefreshLayout>

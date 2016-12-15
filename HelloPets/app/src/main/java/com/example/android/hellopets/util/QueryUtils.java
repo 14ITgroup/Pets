@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public final class QueryUtils {
 
     // the ipAddress of the server
-    public static final String ipAddress = "10.112.139.198";
+    public static final String ipAddress = "222.195.145.152:81";
 
     // use to mark the log this class
     public static final String LOG_TAG = QueryUtils.class.getName();

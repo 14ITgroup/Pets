@@ -99,15 +99,15 @@ public class DetailsActivity extends AppCompatActivity {
                 } else {
                     petPicImageView.setImageResource(R.drawable.doge);
                 }
-                petnameTextView.setText("宠物名称:" + pet.getPetname());
-                petbreedTextView.setText("宠物品种:" + pet.getBreed());
-                petsexTextView.setText("宠物性别:" + pet.getSex());
-                petageTextView.setText("宠物年龄:" + pet.getAge());
-                petentertimeTextView.setText("进入收养所的时间:" + pet.getEntertime());
-                isbackTextView.setText("宠物被退回次数:" + pet.getIsback());
-                backreasonTextView.setText("被退回原因:" + ifNull(pet.getBackreason()));
-                characterTextView.setText("宠物性格:" + ifNull(pet.getCharacter()));
-                healthyTextView.setText("宠物健康状况:" + ifNull(pet.getHealthy()));
+                petnameTextView.setText("宠物名称:  " + pet.getPetname());
+                petbreedTextView.setText("宠物品种:  " + pet.getBreed());
+                petsexTextView.setText("宠物性别:  " + pet.getSex());
+                petageTextView.setText("宠物年龄:  " + pet.getAge());
+                petentertimeTextView.setText("进入收养所的时间:  " + pet.getEntertime());
+                isbackTextView.setText("宠物被退回次数:  " + pet.getIsback());
+                backreasonTextView.setText("被退回原因:  " + ifNull(pet.getBackreason()));
+                characterTextView.setText("宠物性格:  " + ifNull(pet.getCharacter()));
+                healthyTextView.setText("宠物健康状况:  " + ifNull(pet.getHealthy()));
             }
         }, new Response.ErrorListener() {
             @Override
