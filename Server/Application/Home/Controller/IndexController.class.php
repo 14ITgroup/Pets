@@ -440,6 +440,21 @@ class IndexController extends Controller
         }
     }
 
+    // 删除护工信息
+    public function deletecareworker() {
+        $id = I('request.id');
+        $careworker = M('careworker');
+        $result = $careworker->delete($id);
+
+        if ($result) {
+            echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
+            echo "<script>alert('删除成功');location.href='" . $_SERVER["HTTP_REFERER"] . "';</script>";
+        } else {
+            echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
+            echo "<script>alert('删除失败');location.href='" . $_SERVER["HTTP_REFERER"] . "';</script>";
+        }
+    }
+
     // 用户列表
     public function users() {
         $user = M('user');
