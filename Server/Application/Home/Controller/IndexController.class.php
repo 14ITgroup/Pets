@@ -271,7 +271,7 @@ class IndexController extends Controller
                     $result = $pet->add($pet_data);
                     // 在对应的room表中, nownum + 1
                     $room = M('room')->where("id=%d", $pet_data['roomid'])->setInc('nownum', 1);
-                    $pet_id = $result['id'];
+                    $pet_id = $result;
                     foreach ($careworkers as $careworker) {
                         $lookafter = M('lookafter');
                         $lookafter->careworkerid = $careworker;
@@ -297,12 +297,20 @@ class IndexController extends Controller
     // 删除宠物
     public function deletepet() {
         $id = I('request.id');
-        $pet = M('pet');
-        $result = $pet->delete($id);
-        if ($result) {
+        $Pet = M();
+        $Pet->startTrans();
+        try{
+            // 房间nownum - 1
+            $roomid = M('pet')->where("id=%d", $id)->getField('roomid');
+            $room = M('room')->where("id=%d", $roomid)->setDec('nownum', 1);
+            $pet = M('pet');
+            $result = $pet->delete($id);
+
+            $Pet->commit();
             echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
             echo "<script>alert('删除成功');location.href='" . $_SERVER["HTTP_REFERER"] . "';</script>";
-        } else {
+        } catch(Exception $e) {
+            $Pet->rollback();
             echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
             echo "<script>alert('删除失败');location.href='" . $_SERVER["HTTP_REFERER"] . "';</script>";
         }
